@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: <YOUR_GIT_REPO_URL>  # e.g., https://github.com/yourorg/clopus-watcher.git
+    repoURL: https://github.com/turbo-badex/clopus-watcher.git
     path: k8s
     targetRevision: HEAD
   destination:
