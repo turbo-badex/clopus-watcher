@@ -1,0 +1,84 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: clopus-watcher
+  namespace: clopus-watcher
+spec:
+  schedule: "*/5 * * * *"  # Every 5 minutes
+  concurrencyPolicy: Forbid  # Don't run if previous job still running
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 0  # Don't retry failed jobs
+      ttlSecondsAfterFinished: 300  # Clean up after 5 minutes
+      template:
+        spec:
+          serviceAccountName: clopus-watcher
+          restartPolicy: Never
+          # Uncomment if using private registry:
+          # imagePullSecrets:
+          #   - name: regcred
+          initContainers:
+            - name: fix-permissions
+              image: busybox
+              command: ["sh", "-c", "chmod -R 777 /data"]
+              volumeMounts:
+                - name: data
+                  mountPath: /data
+              securityContext:
+                runAsUser: 0
+          containers:
+            - name: watcher
+              image: ghcr.io/kubeden/clopus-watcher:latest
+              imagePullPolicy: Always
+              env:
+                - name: TARGET_NAMESPACE
+                  value: "microservice-app-dev"  # Namespace to monitor
+                - name: WATCHER_MODE
+                  value: "autonomous"  # "autonomous" (fix issues) or "report" (report only)
+                - name: SQLITE_PATH
+                  value: "/data/watcher.db"
+                - name: HOME
+                  value: "/home/claude"
+                # AUTH_MODE: "api-key" (default) or "credentials"
+                - name: AUTH_MODE
+                  value: "api-key"
+                # Option 1: API Key auth (AUTH_MODE=api-key)
+                - name: ANTHROPIC_API_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: claude-auth
+                      key: api-key
+                      optional: true
+                # Option 2: Credentials auth (AUTH_MODE=credentials)
+                # Mount credentials.json via volumeMounts below
+                # Slack notifications (optional)
+                - name: SLACK_WEBHOOK_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: slack-webhook
+                      key: webhook-url
+                      optional: true
+              volumeMounts:
+                - name: data
+                  mountPath: /data
+                # Uncomment for AUTH_MODE=credentials:
+                # - name: claude-credentials
+                #   mountPath: /secrets
+                #   readOnly: true
+              resources:
+                requests:
+                  memory: "256Mi"
+                  cpu: "100m"
+                limits:
+                  memory: "1Gi"
+                  cpu: "500m"
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: watcher-data
+            # Uncomment for AUTH_MODE=credentials:
+            # - name: claude-credentials
+            #   secret:
+            #     secretName: claude-credentials

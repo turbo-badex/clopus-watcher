@@ -1,0 +1,14 @@
+[debug] [2026-01-01T18:14:59.135Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-01T18:14:59.137Z] > authorizing via signed-in user (taiwo@badex.tv)
+[debug] [2026-01-01T18:14:59.137Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-01T18:14:59.137Z] > authorizing via signed-in user (taiwo@badex.tv)
+[debug] [2026-01-01T18:14:59.145Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-01T18:14:59.145Z] > authorizing via signed-in user (taiwo@badex.tv)
+[debug] [2026-01-01T18:14:59.293Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-01T18:14:59.293Z] > authorizing via signed-in user (taiwo@badex.tv)
+[debug] [2026-01-01T18:14:59.294Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-01T18:14:59.294Z] > authorizing via signed-in user (taiwo@badex.tv)
+[debug] [2026-01-01T18:14:59.297Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-01T18:14:59.297Z] > authorizing via signed-in user (taiwo@badex.tv)
+[debug] [2026-01-01T18:14:59.297Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-01T18:14:59.297Z] > authorizing via signed-in user (taiwo@badex.tv)
