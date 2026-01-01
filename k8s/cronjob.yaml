@@ -30,7 +30,7 @@ spec:
                 runAsUser: 0
           containers:
             - name: watcher
-              image: ghcr.io/kubeden/clopus-watcher:latest
+              image: quay.io/badex/clopus-watcher:latest
               imagePullPolicy: Always
               env:
                 - name: TARGET_NAMESPACE
