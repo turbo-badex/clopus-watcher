@@ -13,9 +13,8 @@ spec:
       labels:
         app: dashboard
     spec:
-      # Uncomment if using private registry:
-      # imagePullSecrets:
-      #   - name: regcred
+      imagePullSecrets:
+        - name: quay-pull-secret
       containers:
         - name: dashboard
           image: quay.io/badex/clopus-watcher-dashboard:latest

@@ -16,9 +16,8 @@ spec:
         spec:
           serviceAccountName: clopus-watcher
           restartPolicy: Never
-          # Uncomment if using private registry:
-          # imagePullSecrets:
-          #   - name: regcred
+          imagePullSecrets:
+            - name: quay-pull-secret
           initContainers:
             - name: fix-permissions
               image: busybox
