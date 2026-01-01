@@ -18,15 +18,6 @@ spec:
           restartPolicy: Never
           imagePullSecrets:
             - name: quay-pull-secret
-          initContainers:
-            - name: fix-permissions
-              image: busybox
-              command: ["sh", "-c", "chmod -R 777 /data"]
-              volumeMounts:
-                - name: data
-                  mountPath: /data
-              securityContext:
-                runAsUser: 0
           containers:
             - name: watcher
               image: quay.io/badex/clopus-watcher:latest
