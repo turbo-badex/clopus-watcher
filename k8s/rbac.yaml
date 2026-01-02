@@ -42,3 +42,33 @@ subjects:
   - kind: ServiceAccount
     name: clopus-watcher
     namespace: clopus-watcher
+---
+# Write permissions scoped to target namespace only
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: clopus-watcher-write
+  namespace: microservice-app-dev
+rules:
+  # Delete and recreate pods to fix image issues
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["create", "delete"]
+  # Patch deployments to fix image references
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["get", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: clopus-watcher-write
+  namespace: microservice-app-dev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: clopus-watcher-write
+subjects:
+  - kind: ServiceAccount
+    name: clopus-watcher
+    namespace: clopus-watcher
